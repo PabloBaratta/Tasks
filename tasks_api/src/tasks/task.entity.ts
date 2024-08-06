@@ -3,12 +3,11 @@ export enum TaskStatus {
     IN_PROGRESS = 'IN_PROGRESS',
     DONE = 'DONE'
 }
-
 export class Task {
     id: string
     title: string
     description: string
     status: TaskStatus
-    initialDate: (Date | null)
-    endDate: (Date | null)
+    initialDate?: Date
+    endDate?: Date
 }
