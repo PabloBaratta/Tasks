@@ -9,8 +9,10 @@ export class CreateTaskDto {
     @IsString()
     description: string
     @IsDate()
+    @IsOptional()
     initialDate?: Date
     @IsDate()
+    @IsOptional()
     endDate?: Date
 }
 

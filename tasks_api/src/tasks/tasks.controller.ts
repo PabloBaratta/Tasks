@@ -4,16 +4,15 @@ import {Task} from "./task.entity";
 import {CreateTaskDto, UpdateTaskDto} from "./dto/task.dto";
 @Controller('tasks')
 export class TasksController {
-
     constructor(private tasksService: TasksService) {
     }
     @Get()
-    getAllTasks() : Task[] {
+    getAllTasks(): Promise<Task[]> {
         return this.tasksService.getAllTasks();
     }
 
     @Post()
-    createTask(@Body() newTask : CreateTaskDto): Task {
+    createTask(@Body() newTask : CreateTaskDto): Promise<Task> {
         if (newTask.initialDate !== null){
             return this.tasksService.createTaskWithDate(newTask.title,
                 newTask.description,
@@ -24,11 +23,11 @@ export class TasksController {
     }
 
     @Patch(':id')
-    updateTask(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto): Task {
+     updateTask(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto): Promise<Task> {
         return this.tasksService.updateTask(id, updateTaskDto);
     }
     @Delete(':id')
-    deleteTask(@Param('id') id: string): Task {
+    deleteTask(@Param('id') id: string): Promise<Task> {
         return this.tasksService.deleteTask(id);
     }
 
