@@ -1,5 +1,5 @@
 import {TaskStatus} from "../task.entity";
-import {IsDate, IsEnum, IsNotEmpty, IsOptional, IsString, MinLength} from 'class-validator'
+import {IsDate, IsDateString, IsEnum, IsNotEmpty, IsOptional, IsString, MinLength} from 'class-validator'
 
 export class CreateTaskDto {
     @IsString()
@@ -8,10 +8,10 @@ export class CreateTaskDto {
     title: string
     @IsString()
     description: string
-    @IsDate()
+    @IsDateString()
     @IsOptional()
     initialDate?: Date
-    @IsDate()
+    @IsDateString()
     @IsOptional()
     endDate?: Date
 }
@@ -30,11 +30,11 @@ export class UpdateTaskDto {
     @IsEnum(TaskStatus)
     status?: TaskStatus
 
-    @IsDate()
+    @IsDateString()
     @IsOptional()
     initialDate?: Date
 
-    @IsDate()
+    @IsDateString()
     @IsOptional()
     endDate?: Date
 }
