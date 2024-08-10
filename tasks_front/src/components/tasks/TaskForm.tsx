@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {CreateTaskDTO, Task} from "../../types/tasks/task";
+import {Task} from "../../types/tasks/task";
 import {useAppDispatch, useAppSelector} from "../../app/hooks.ts";
 import {addTask, fetchTasks, updateTask} from "../../features/tasks/tasksSlice.ts";
 import api from "../api.tsx";
@@ -82,7 +82,7 @@ export const TaskForm = () => {
 
     return <div>
         <form onSubmit={handleSubmit} className="bg-zinc-800 max-w-sm p-4">
-            <label className="block text-sm font-bold">Task:</label>
+            <label className="block text-sm font-bold">Tarea:</label>
             <input
                 type="text"
                 name="title"
@@ -93,9 +93,8 @@ export const TaskForm = () => {
                 autoFocus
             />
             <label>
-                Description:
+                Descripción:
                 <textarea
-                    type="text"
                     name="description"
                     onChange={handleChange}
                     value={task.description}
@@ -115,7 +114,8 @@ export const TaskForm = () => {
                    className="w-full p-1 rounded-md bg-zinc-600 mb-2"
             />
             </label>
-            <button type="submit" className="bg-indigo-600 px-2 py-1">Submit</button>
+            <button type="submit" className="bg-indigo-600 px-2 py-1">Guardar</button>
         </form>
+
     </div>
 }
