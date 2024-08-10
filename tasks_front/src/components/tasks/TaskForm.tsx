@@ -48,7 +48,7 @@ export const TaskForm = () => {
     const handleChange = e => {
         setTask({
             ...task,
-            [e.target.name] : e.target.value,
+            [e.target.name]: e.target.value,
         })
     }
 
@@ -67,28 +67,55 @@ export const TaskForm = () => {
                 endDate: task.endDate ? new Date(task.endDate) : undefined,
             };
 
-            if (params.id){
-                const promise : AxiosResponse<Task> = await api.patch(`/tasks/${params.id}`, formData);
+            if (params.id) {
+                const promise: AxiosResponse<Task> = await api.patch(`/tasks/${params.id}`, formData);
                 dispatch(updateTask(promise.data))
-            }
-            else {
-                const promise : AxiosResponse<Task> = await api.post('/tasks', formData);
+            } else {
+                const promise: AxiosResponse<Task> = await api.post('/tasks', formData);
                 dispatch(addTask(promise.data))
             }
             navigate('/')
-        }
-        catch (error){
+        } catch (error) {
             console.log(error)
         }
     }
 
     return <div>
-        <form onSubmit={handleSubmit}>
-            <input name='title' type="text" placeholder="titulo" onChange={handleChange} value={task.title} required/>
-            <textarea name='description' placeholder="descripción" onChange={handleChange} value={task.description}/>
-            <input name='initialDate' type="date" onChange={handleChange} value={task.initialDate}/>
-            <input name='endDate' type="date"  onChange={handleChange} value={task.endDate}/>
-            <button>Guardar</button>
+        <form onSubmit={handleSubmit} className="bg-zinc-800 max-w-sm p-4">
+            <label className="block text-sm font-bold">Task:</label>
+            <input
+                type="text"
+                name="title"
+                onChange={handleChange}
+                value={task.title}
+                className="w-full p-2 rounded-md bg-zinc-600 mb-2"
+                placeholder="Write a title"
+                autoFocus
+            />
+            <label>
+                Description:
+                <textarea
+                    type="text"
+                    name="description"
+                    onChange={handleChange}
+                    value={task.description}
+                    className="w-full p-2 rounded-md bg-zinc-600 mb-2"
+                    placeholder="Write a description"
+                />
+            </label>
+            <label>
+                Fecha inicial:
+            <input name='initialDate' type="date" onChange={handleChange} value={task.initialDate}
+                   className="w-full p-1 rounded-md bg-zinc-600 mb-2"
+            />
+            </label>
+            <label>
+                Fecha Final:
+            <input name='endDate' type="date" onChange={handleChange} value={task.endDate}
+                   className="w-full p-1 rounded-md bg-zinc-600 mb-2"
+            />
+            </label>
+            <button type="submit" className="bg-indigo-600 px-2 py-1">Submit</button>
         </form>
     </div>
 }

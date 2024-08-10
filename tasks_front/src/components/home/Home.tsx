@@ -4,7 +4,7 @@ import {TaskForm} from "../tasks/TaskForm.tsx";
 
 export const Home = () => {
 
-    return <div>
+    return (
         <TasksList/>
-    </div>
+    )
 }

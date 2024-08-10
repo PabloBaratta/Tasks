@@ -8,13 +8,16 @@ import React from "react";
 function App() {
 
     return (
-        <div className='App'>
-        <Routes>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/create-task" element={<TaskForm/>}/>
-            <Route path="/edit-task/:id" element={<TaskForm/>}/>
+        <div className='bg-zinc-900 h-screen text-white'>
+            <div className="flex items-center justify-center h-full ">
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/create-task" element={<TaskForm/>}/>
+                    <Route path="/edit-task/:id" element={<TaskForm/>}/>
+                </Routes>
 
-        </Routes>
+
+            </div>
         </div>
   );
 }
