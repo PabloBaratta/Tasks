@@ -16,12 +16,13 @@ const initialState : TaskState = {
     loaded: false
 };
 
-export const fetchTasks = createAsyncThunk("fetchTasks", async () => {
+export const fetchTasks = createAsyncThunk("fetchTasks", async (thunkAPI) => {
     try {
         const res = await api.get('/tasks');
         return res?.data;
     }
     catch (error) {
+        thunkAPI.rejectWithValue(error)
         return error;
     }
 });

@@ -6,6 +6,7 @@ import api from "../api.tsx";
 import {AxiosResponse} from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 import {AppDispatch, RootState} from "../../app/store";
+import {Alert} from "@mui/material";
 
 export const TaskForm = () => {
 
@@ -27,6 +28,7 @@ export const TaskForm = () => {
     const tasks = useAppSelector((state: RootState) => state.tasks);
     const navigate = useNavigate();
     const params = useParams();
+    const [error, setError] = useState()
 
 
     useEffect(() => {
@@ -76,7 +78,8 @@ export const TaskForm = () => {
             }
             navigate('/')
         } catch (error) {
-            console.log(error)
+            console.log("w")
+            setError(error);
         }
     }
 
@@ -114,6 +117,10 @@ export const TaskForm = () => {
                    className="w-full p-1 rounded-md bg-zinc-600 mb-2"
             />
             </label>
+            {error &&
+                <div className="py-3 text-xs flex justify-center">
+                    <Alert severity="error">Ha habido problemas con tu guardado</Alert>
+                </div>}
             <button type="submit" className="bg-indigo-600 px-2 py-1">Guardar</button>
         </form>
 

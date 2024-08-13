@@ -52,7 +52,7 @@ export const TasksList = () => {
         </header>
 
         <div className="grid grid-cols-3 gap-4">
-            { [...tasks.tasks].sort((a, b) => new Date(a.initialDate).getTime() - new Date(b.initialDate).getTime())
+            {tasks.tasks && [...tasks.tasks].sort((a, b) => new Date(a.initialDate).getTime() - new Date(b.initialDate).getTime())
                 .map((task: Task) => (
                 <div className="bg-neutral-800 p-4 rounded-md" key={task.id}>
                     <header className="flex justify-between">
